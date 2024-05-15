@@ -20,9 +20,10 @@ void task2(void);
 
 int main(void)
 {
-	const int8_t rc = taskManager.begin(TASKS);
+	taskManager.begin(TASKS);
     taskManager.addTask(task1, 1000); // Add a task that will run every 1000 ms
     taskManager.addTask(task2, 2000); // Add a task that will run every 2000 ms
+    // taskManager.addTask(taskN);    // Add a task that will run instantly
     // taskManager.deleteTask(task1); // Delete task
     // taskManager.deleteTask(task2); // Delete task
     while (1) 

@@ -54,6 +54,17 @@ const uint8_t TaskManager::addTask(void (*task)(void), const uint32_t interval)
 }
 
 /*!
+ * @brief  Adding a task to the task manager
+ * @param  task
+ *         The callback to the task function
+ * @return Returns 0 if the task manager is full of tasks, otherwise 1
+ */
+const uint8_t TaskManager::addTask(void (*task)(void))
+{
+    return (this->addTask(task, (const uint32_t)0));
+}
+
+/*!
  * @brief  Deleting a task to the task manager
  * @param  task
  *         The callback to the task function
@@ -76,27 +87,6 @@ const int8_t TaskManager::deleteTask(void (*task)(void))
         return (1);
     }
     return (-1);
-}
-
-/*!
- * @brief  Replacing a task in the task manager
- * @param  toDelete
- *         The callback to the task function to delete from task manager
- * @param  toAdd
- *         The callback to the task function to add to task manager
- * @return Returns 0 if the task to delete was not found inside the task manager
- *         Returns 1 if the task was successfully found and replaced with the one to add
- */
-const uint8_t TaskManager::replaceTask(void (*toDelete)(void), void (*toAdd)(void))
-{
-     for (uint8_t i = 0; i < this->taskIndex; i++)
-    {
-        if (this->tasks[i].task != toDelete) // Skip this task if it's not the one we want to delete
-            continue;
-        this->tasks[i].task = toAdd;         // Found the task, swap it with the one to add
-        return (1);
-    }
-    return (0);
 }
 
 /*!

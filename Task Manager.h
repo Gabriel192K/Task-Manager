@@ -14,8 +14,8 @@ class TaskManager
         ~TaskManager();
         const int8_t  begin      (const uint8_t tasksAmount);
         const uint8_t addTask    (void (*task)(void), const uint32_t interval);
+        const uint8_t addTask    (void (*task)(void));
         const int8_t  deleteTask (void (*task)(void));
-        const int8_t  replaceTask(void (*toDelete)(void), void (*toAdd)(void));
         void          run        (void);
         const uint8_t end        (void);
     private:
